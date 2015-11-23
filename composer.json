@@ -1,0 +1,11 @@
+{
+  "require": {
+    "phpspec/phpspec": "^2.3"
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "autoload": {
+    "psr-0": {"PingPong\\": "src"}
+  }
+}
