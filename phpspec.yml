@@ -1,4 +1,3 @@
 suites:
   default:
     namespace: PingPong
-    psr0_prefix: PingPong

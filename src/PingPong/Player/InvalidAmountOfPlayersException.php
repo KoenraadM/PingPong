@@ -2,7 +2,7 @@
 
 namespace PingPong\Player;
 
-class InvalidAmountOfPlayersException extends Exception
+class InvalidAmountOfPlayersException extends \Exception
 {
 
 }
