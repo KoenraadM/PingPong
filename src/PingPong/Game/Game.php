@@ -1,6 +1,7 @@
 <?php
 
-namespace PingPong;
+namespace PingPong\Game;
+
 use PingPong\Player\InvalidAmountOfPlayersException;
 use PingPong\Team\Team;
 
@@ -9,6 +10,7 @@ class Game
     private $teamOne;
     private $teamTwo;
     private $score = [0,0];
+    private $state;
 
     public static function withTeams(Team $teamOne, Team $teamTwo)
     {
@@ -16,7 +18,7 @@ class Game
         $game->teamOne = $teamOne;
         $game->teamTwo = $teamTwo;
 
-        // TODO: write logic here
+        $game->state = new OpenGameState();
 
         return $game;
     }
@@ -32,11 +34,25 @@ class Game
         } else {
             $this->score[1]++;
         }
+
+        if (($this->score[0] > 10 || $this->score[1] > 10) && abs($this->score[0] - $this->score[1]) > 1) {
+            $this->state = $this->state->finish();
+        }
     }
 
     public function getScore()
     {
         return $this->score;
+    }
+
+    public function isFinished()
+    {
+        return $this->state instanceof FinishGameState;
+    }
+
+    public function isOpen()
+    {
+        return $this->state instanceof OpenGameState;
     }
 
 }
