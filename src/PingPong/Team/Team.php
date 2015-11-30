@@ -33,8 +33,18 @@ class Team
         return $this->playerTwo ? 2 : 1;
     }
 
+    public function getPlayerOne()
+    {
+        return $this->playerOne;
+    }
+
+    public function getPlayerTwo()
+    {
+        return $this->playerTwo;
+    }
+
+    public function getServingPlayer()
+    {
+        // TODO: write logic here
+    }
 }
-
-
-
-

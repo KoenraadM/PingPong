@@ -46,4 +46,34 @@ class TeamSpec extends ObjectBehavior
         $this->createTwoPlayerTeam();
         $this->getPlayerCount()->shouldBe(2);
     }
+
+    function it_should_return_player_one_in_single_player_team()
+    {
+        $this->createOnePlayerTeam();
+        $this->getPlayerOne()->shouldBe($this->playerOne);
+    }
+
+    function it_should_return_empty_player_two_in_single_player_team()
+    {
+        $this->createOnePlayerTeam();
+        $this->getPlayerTwo()->shouldBe(null);
+    }
+
+    function it_should_return_player_one_in_two_player_team()
+    {
+        $this->createTwoPlayerTeam();
+        $this->getPlayerOne()->shouldBe($this->playerOne);
+    }
+
+    function it_should_return_player_two_in_two_player_team()
+    {
+        $this->createTwoPlayerTeam();
+        $this->getPlayerTwo()->shouldBe($this->playerTwo);
+    }
+
+    function it_should_return_serving_player()
+    {
+        $this->createTwoPlayerTeam();
+        $this->getServingPlayer()->shouldBeAnInstanceOf('PingPong\Player\Player');
+    }
 }

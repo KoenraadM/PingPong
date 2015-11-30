@@ -7,9 +7,11 @@ use PingPong\Team\Team;
 
 class Game
 {
+    /** @var  Team */
     private $teamOne;
+    /** @var  Team */
     private $teamTwo;
-    private $score = [0,0];
+    private $score = [0, 0];
     private $state;
 
     public static function withTeams(Team $teamOne, Team $teamTwo)
@@ -55,4 +57,13 @@ class Game
         return $this->state instanceof OpenGameState;
     }
 
+    public function getServingPlayer()
+    {
+        return $this->teamOne->getPlayerOne();
+    }
+
+
+    public function setServerPlayer(Player $player)
+    {
+    }
 }

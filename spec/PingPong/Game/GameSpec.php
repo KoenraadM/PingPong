@@ -17,6 +17,8 @@ class GameSpec extends ObjectBehavior
 {
     private $teamOne;
     private $teamTwo;
+    private $playerTommy;
+    private $playerDanny;
 
     function it_is_initializable()
     {
@@ -25,8 +27,10 @@ class GameSpec extends ObjectBehavior
 
     function let()
     {
-        $this->teamOne = Team::withPlayers(Player::withName('Tommy'));
-        $this->teamTwo = Team::withPlayers(Player::withName('Danny'));
+        $this->playerTommy = Player::withName('Tommy');
+        $this->playerDanny = Player::withName('Danny');
+        $this->teamOne = Team::withPlayers($this->playerTommy);
+        $this->teamTwo = Team::withPlayers($this->playerDanny);
         $this->beConstructedThrough('withTeams', array($this->teamOne, $this->teamTwo));
     }
 
@@ -70,10 +74,26 @@ class GameSpec extends ObjectBehavior
         $this->scoreMany(10, $this->teamOne);
         $this->scoreMany(10, $this->teamTwo);
         $this->score($this->teamOne);
-        $this->score($this->teamTwo);
-        $this->score($this->teamOne);
-        $this->score($this->teamTwo);
-        $this->score($this->teamTwo);
         $this->isOpen()->shouldBe(true);
     }
+
+    function it_should_have_a_finished_state_when_overtime_and_team_one_scores_twice_in_a_row()
+    {
+        $this->scoreMany(10, $this->teamOne);
+        $this->scoreMany(10, $this->teamTwo);
+        $this->score($this->teamOne);
+        $this->score($this->teamOne);
+        $this->isFinished()->shouldBe(true);
+    }
+
+    /*function it_should_return_the_serving_player_with_new_game()
+    {
+        $this->getServingPlayer()->shouldBeAnInstanceOf('PingPong\Player\Player');
+    }
+
+    function it_should_return_the_new_set_serving_player()
+    {
+        $this->setServerPlayer($this->playerTommy);
+        $this->getServingPlayer()->shouldBe($this->playerTommy);
+    }*/
 }
