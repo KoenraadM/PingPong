@@ -6,6 +6,10 @@ class Player
 {
     private $name;
 
+    private function __construct()
+    {
+    }
+
     public static function withName($playerName)
     {
         $player = new Player();
@@ -14,13 +18,8 @@ class Player
         return $player;
     }
 
-    private function __construct()
-    {
-    }
-
     public function getName()
     {
         return $this->name;
     }
-
 }

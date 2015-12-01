@@ -6,5 +6,6 @@ interface GameState
 {
 
     public function open();
+
     public function finish();
 }

@@ -2,7 +2,7 @@
 
 namespace PingPong\Game;
 
-use PingPong\Player\InvalidAmountOfPlayersException;
+use PingPong\Player\Player;
 use PingPong\Team\Team;
 
 class Game
@@ -23,10 +23,6 @@ class Game
         $game->state = new OpenGameState();
 
         return $game;
-    }
-
-    private function __construct()
-    {
     }
 
     public function score(Team $team)
@@ -61,7 +57,6 @@ class Game
     {
         return $this->teamOne->getPlayerOne();
     }
-
 
     public function setServerPlayer(Player $player)
     {

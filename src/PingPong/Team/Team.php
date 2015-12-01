@@ -9,8 +9,13 @@ class Team
     private $playerOne;
     private $playerTwo;
 
+    private function __construct()
+    {
+    }
+
     /**
-     * @param array $players
+     * @param Player $playerOne
+     * @param Player|null $playerTwo
      * @return Team
      */
     public static function withPlayers(Player $playerOne, Player $playerTwo = null)
@@ -19,13 +24,7 @@ class Team
         $team->playerOne = $playerOne;
         $team->playerTwo = $playerTwo;
 
-        // TODO: write logic here
-
         return $team;
-    }
-
-    private function __construct()
-    {
     }
 
     public function getPlayerCount()
