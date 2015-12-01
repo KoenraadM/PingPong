@@ -2,7 +2,6 @@
 
 namespace PingPong\Game;
 
-use PingPong\Player\Player;
 use PingPong\Team\Team;
 
 class Game
@@ -13,12 +12,14 @@ class Game
     private $teamTwo;
     private $score = [0, 0];
     private $state;
+    private $servingTeam;
 
     public static function withTeams(Team $teamOne, Team $teamTwo)
     {
         $game = new Game();
         $game->teamOne = $teamOne;
         $game->teamTwo = $teamTwo;
+        $game->servingTeam = $teamOne;
 
         $game->state = new OpenGameState();
 
@@ -58,7 +59,8 @@ class Game
         return $this->teamOne->getPlayerOne();
     }
 
-    public function setServerPlayer(Player $player)
+    public function setServingTeam(Team $team)
     {
+        $this->servingTeam = $team;
     }
 }

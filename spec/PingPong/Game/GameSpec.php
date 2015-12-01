@@ -86,14 +86,14 @@ class GameSpec extends ObjectBehavior
         $this->isFinished()->shouldBe(true);
     }
 
-    /*function it_should_return_the_serving_player_with_new_game()
+    function it_should_return_the_serving_player_with_new_game()
     {
         $this->getServingPlayer()->shouldBeAnInstanceOf('PingPong\Player\Player');
     }
 
-    function it_should_return_the_new_set_serving_player()
+    function it_should_return_the_new_set_serving_team()
     {
-        $this->setServerPlayer($this->playerTommy);
+        $this->setServingTeam($this->teamOne);
         $this->getServingPlayer()->shouldBe($this->playerTommy);
-    }*/
+    }
 }

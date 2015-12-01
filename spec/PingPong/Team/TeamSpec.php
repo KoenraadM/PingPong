@@ -76,4 +76,40 @@ class TeamSpec extends ObjectBehavior
         $this->createTwoPlayerTeam();
         $this->getServingPlayer()->shouldBeAnInstanceOf('PingPong\Player\Player');
     }
+
+    function it_should_set_the_serving_player()
+    {
+        $this->createTwoPlayerTeam();
+        $this->setServingPlayer($this->playerTwo);
+        $this->getServingPlayer()->shouldBe($this->playerTwo);
+    }
+
+    function it_should_not_be_possible_to_set_an_unknown_player_as_serving_member()
+    {
+        $this->createOnePlayerTeam();
+        $this->shouldThrow('PingPong\Player\InvalidPlayerException')->during('setServingPlayer',
+            array(Player::withName('Thomas')));
+    }
+
+    function it_should_switch_serving_players_for_single_player_game()
+    {
+        $this->createOnePlayerTeam();
+        $this->switchServingPlayer()->shouldBe($this->playerOne);
+        $this->getServingPlayer()->shouldBe($this->playerOne);
+    }
+
+    function it_should_switch_serving_players_for_two_player_game()
+    {
+        $this->createTwoPlayerTeam();
+        $this->switchServingPlayer()->shouldBe($this->playerTwo);
+        $this->getServingPlayer()->shouldBe($this->playerTwo);
+    }
+
+    function it_should_switch_serving_players_sequentially_for_two_player_game()
+    {
+        $this->createTwoPlayerTeam();
+        $this->switchServingPlayer();
+        $this->switchServingPlayer();
+        $this->getServingPlayer()->shouldBe($this->playerOne);
+    }
 }
