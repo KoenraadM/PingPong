@@ -56,7 +56,7 @@ class Game
 
     public function getServingPlayer()
     {
-        return $this->teamOne->getPlayerOne();
+        return $this->teamOne->getServingPlayer();
     }
 
     public function setServingTeam(Team $team)

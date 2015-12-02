@@ -5,6 +5,7 @@ namespace spec\PingPong\Game;
 use PhpSpec\ObjectBehavior;
 use PingPong\Game;
 use PingPong\Player\Player;
+use PingPong\Team\SingleTeam;
 use PingPong\Team\Team;
 use Prophecy\Argument;
 
@@ -29,8 +30,8 @@ class GameSpec extends ObjectBehavior
     {
         $this->playerTommy = Player::withName('Tommy');
         $this->playerDanny = Player::withName('Danny');
-        $this->teamOne = Team::withPlayers($this->playerTommy);
-        $this->teamTwo = Team::withPlayers($this->playerDanny);
+        $this->teamOne = SingleTeam::withPlayer($this->playerTommy);
+        $this->teamTwo = SingleTeam::withPlayer($this->playerDanny);
         $this->beConstructedThrough('withTeams', array($this->teamOne, $this->teamTwo));
     }
 
