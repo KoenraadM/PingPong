@@ -29,19 +29,22 @@ class Game
     public function score(Team $team)
     {
         if ($team == $this->teamOne) {
-            $this->score[0]++;
+            $this->teamOne->score();
         } else {
-            $this->score[1]++;
+            $this->teamTwo->score();
         }
 
-        if (($this->score[0] > 10 || $this->score[1] > 10) && abs($this->score[0] - $this->score[1]) > 1) {
+        if (($this->teamOne->getScore() > 10 || $this->teamTwo->getScore() > 10) && abs($this->teamOne->getScore() - $this->teamTwo->getScore()) > 1) {
             $this->state = $this->state->finish();
         }
     }
 
     public function getScore()
     {
-        return $this->score;
+        return [
+            $this->teamOne->getScore(),
+            $this->teamTwo->getScore(),
+        ];
     }
 
     public function isFinished()

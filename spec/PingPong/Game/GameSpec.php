@@ -44,19 +44,19 @@ class GameSpec extends ObjectBehavior
 
     function it_should_give_a_empty_score_with_new_game()
     {
-        $this->getScore()->shouldBe([0,0]);
+        $this->getScore()->shouldBe([0, 0]);
     }
 
     function it_counts_score_for_perfect_team_one_game()
     {
         $this->scoreMany(11, $this->teamOne);
-        $this->getScore()->shouldBe([11,0]);
+        $this->getScore()->shouldBe([11, 0]);
     }
 
     function it_counts_score_for_perfect_team_two_game()
     {
         $this->scoreMany(11, $this->teamTwo);
-        $this->getScore()->shouldBe([0,11]);
+        $this->getScore()->shouldBe([0, 11]);
     }
 
     function it_should_have_an_open_state_when_a_new_game_is_started()
@@ -96,5 +96,16 @@ class GameSpec extends ObjectBehavior
     {
         $this->setServingTeam($this->teamOne);
         $this->getServingPlayer()->shouldBe($this->playerTommy);
+    }
+
+    function it_should_return_zero_score_for_starting_game()
+    {
+        $this->getScore()->shouldBe(array(0, 0));
+    }
+
+    function it_should_return_one_zero_score_for_scoring_team()
+    {
+        $this->score($this->teamOne);
+        $this->getScore()->shouldBe(array(1, 0));
     }
 }
