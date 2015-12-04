@@ -6,12 +6,13 @@ use PingPong\Team\Team;
 
 class Game
 {
-    /** @var  Team */
+    /** @var Team */
     private $teamOne;
-    /** @var  Team */
+    /** @var Team */
     private $teamTwo;
-    private $score = [0, 0];
+    /** @var GameState */
     private $state;
+    /** @var Team */
     private $servingTeam;
 
     public static function withTeams(Team $teamOne, Team $teamTwo)
@@ -34,7 +35,7 @@ class Game
             $this->teamTwo->score();
         }
 
-        if (($this->teamOne->getScore() > 10 || $this->teamTwo->getScore() > 10) && abs($this->teamOne->getScore() - $this->teamTwo->getScore()) > 1) {
+        if ($this->isGameFinished()) {
             $this->state = $this->state->finish();
         }
     }
@@ -65,5 +66,13 @@ class Game
     public function setServingTeam(Team $team)
     {
         $this->servingTeam = $team;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isGameFinished()
+    {
+        return ($this->teamOne->getScore() > 10 || $this->teamTwo->getScore() > 10) && abs($this->teamOne->getScore() - $this->teamTwo->getScore()) > 1;
     }
 }
