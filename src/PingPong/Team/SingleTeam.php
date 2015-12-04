@@ -6,8 +6,11 @@ use PingPong\Player\Player;
 
 class SingleTeam implements Team
 {
-
+    /** @var Player */
     protected $playerOne;
+
+    /** @var Int */
+    protected $score;
 
     private function __construct()
     {
@@ -21,6 +24,7 @@ class SingleTeam implements Team
     {
         $team = new SingleTeam();
         $team->playerOne = $playerOne;
+        $team->score = 0;
 
         return $team;
     }
@@ -43,5 +47,15 @@ class SingleTeam implements Team
     public function switchServingPlayer()
     {
         return $this->playerOne;
+    }
+
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    public function score()
+    {
+        $this->score++;
     }
 }

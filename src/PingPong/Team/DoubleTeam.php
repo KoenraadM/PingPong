@@ -26,6 +26,7 @@ class DoubleTeam extends SingleTeam
         $team = new DoubleTeam();
         $team->playerOne = $playerOne;
         $team->playerTwo = $playerTwo;
+        $team->score = 0;
         $team->servingPlayer = $playerOne;
 
         return $team;

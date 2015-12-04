@@ -6,7 +6,6 @@ use PingPong\Player\Player;
 
 interface Team
 {
-
     public function getPlayerCount();
 
     public function getServingPlayer();
@@ -14,4 +13,8 @@ interface Team
     public function setServingPlayer(Player $player);
 
     public function switchServingPlayer();
+
+    public function score();
+
+    public function getScore();
 }

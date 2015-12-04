@@ -68,4 +68,15 @@ class DoubleTeamSpec extends ObjectBehavior
         $this->switchServingPlayer();
         $this->getServingPlayer()->shouldBe($this->playerOne);
     }
+
+    function it_should_start_with_score_zero()
+    {
+        $this->getScore()->shouldbe(0);
+    }
+
+    function it_should_add_one_when_scoring()
+    {
+        $this->score();
+        $this->getScore()->shouldBe(1);
+    }
 }
