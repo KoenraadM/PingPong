@@ -29,6 +29,10 @@ class Game
 
     public function score(Team $team)
     {
+        if ($this->isFinished()) {
+            throw new IllegalActionException('Trying to score on an already finished game.');
+        }
+
         if ($team == $this->teamOne) {
             $this->teamOne->score();
         } else {

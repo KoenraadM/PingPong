@@ -100,12 +100,18 @@ class GameSpec extends ObjectBehavior
 
     function it_should_return_zero_score_for_starting_game()
     {
-        $this->getScore()->shouldBe(array(0, 0));
+        $this->getScore()->shouldBe([0, 0]);
     }
 
     function it_should_return_one_zero_score_for_scoring_team()
     {
         $this->score($this->teamOne);
-        $this->getScore()->shouldBe(array(1, 0));
+        $this->getScore()->shouldBe([1, 0]);
+    }
+
+    function it_should_throw_exception_when_trying_to_score_for_finished_game()
+    {
+        $this->scoreMany(11, $this->teamOne);
+        $this->shouldThrow('PingPong\Game\IllegalActionException')->during('score', [$this->teamOne]);
     }
 }
