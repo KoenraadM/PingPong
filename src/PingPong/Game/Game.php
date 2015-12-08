@@ -77,7 +77,7 @@ class Game
         return $this->teams[$this->servingTeamKey];
     }
 
-    public function validateExistingTeam(Team $team)
+    private function validateExistingTeam(Team $team)
     {
         if (!in_array($team, $this->teams)) {
             throw new InvalidTeamException('Team does not exist');

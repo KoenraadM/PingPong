@@ -64,6 +64,11 @@ class GameSpec extends ObjectBehavior
         $this->isOpen()->shouldBe(true);
     }
 
+    function it_should_throw_exception_when_trying_to_score_for_non_existing_team()
+    {
+        $this->shouldThrow('PingPong\Team\InvalidTeamException')->during('score', [SingleTeam::withPlayer(Player::withName('Natalie'))]);
+    }
+
     function it_should_have_an_finished_state_for_perfect_team_one_game()
     {
         $this->scoreMany(11, $this->teamOne);
