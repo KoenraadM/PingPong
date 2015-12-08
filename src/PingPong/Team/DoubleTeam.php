@@ -8,9 +8,7 @@ use PingPong\Player\Player;
 class DoubleTeam extends SingleTeam
 {
 
-    private $playerTwo;
-
-    private $servingPlayer;
+    private $servingPlayerKey = 0;
 
     private function __construct()
     {
@@ -24,10 +22,8 @@ class DoubleTeam extends SingleTeam
     public static function withPlayers(Player $playerOne, Player $playerTwo)
     {
         $team = new DoubleTeam();
-        $team->playerOne = $playerOne;
-        $team->playerTwo = $playerTwo;
+        $team->players = [$playerOne, $playerTwo];
         $team->score = 0;
-        $team->servingPlayer = $playerOne;
 
         return $team;
     }
@@ -39,25 +35,21 @@ class DoubleTeam extends SingleTeam
 
     public function getServingPlayer()
     {
-        return $this->servingPlayer;
+        return $this->players[$this->servingPlayerKey];
     }
 
     public function setServingPlayer(Player $player)
     {
-        if ($player !== $this->playerOne && $player !== $this->playerTwo) {
+        if (!in_array($player, $this->players)) {
             throw new InvalidPlayerException;
         }
-        $this->servingPlayer = $player;
+        $this->servingPlayerKey = array_search($player, $this->players);
     }
 
     public function switchServingPlayer()
     {
-        if ($this->servingPlayer === $this->playerOne && $this->playerTwo) {
-            $this->servingPlayer = $this->playerTwo;
-        } elseif ($this->servingPlayer === $this->playerTwo) {
-            $this->servingPlayer = $this->playerOne;
-        }
+        $this->servingPlayerKey ^= 1;
 
-        return $this->servingPlayer;
+        return $this->players[$this->servingPlayerKey];
     }
 }

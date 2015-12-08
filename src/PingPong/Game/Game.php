@@ -2,26 +2,22 @@
 
 namespace PingPong\Game;
 
+use PingPong\Team\InvalidTeamException;
 use PingPong\Team\Team;
 
 class Game
 {
-    /** @var Team */
-    private $teamOne;
-    /** @var Team */
-    private $teamTwo;
+    /** @var Team[] */
+    private $teams;
     /** @var GameState */
     private $state;
     /** @var Team */
-    private $servingTeam;
+    private $servingTeamKey = 0;
 
     public static function withTeams(Team $teamOne, Team $teamTwo)
     {
         $game = new Game();
-        $game->teamOne = $teamOne;
-        $game->teamTwo = $teamTwo;
-        $game->servingTeam = $teamOne;
-
+        $game->teams = [$teamOne, $teamTwo];
         $game->state = new OpenGameState();
 
         return $game;
@@ -29,15 +25,13 @@ class Game
 
     public function score(Team $team)
     {
+        $this->validateExistingTeam($team);
+
         if ($this->isFinished()) {
             throw new IllegalActionException('Trying to score on an already finished game.');
         }
 
-        if ($team == $this->teamOne) {
-            $this->teamOne->score();
-        } else {
-            $this->teamTwo->score();
-        }
+        $team->score();
 
         if ($this->isGameFinished()) {
             $this->state = $this->state->finish();
@@ -47,8 +41,8 @@ class Game
     public function getScore()
     {
         return [
-            $this->teamOne->getScore(),
-            $this->teamTwo->getScore(),
+            $this->teams[0]->getScore(),
+            $this->teams[1]->getScore(),
         ];
     }
 
@@ -69,14 +63,24 @@ class Game
 
     public function setServingTeam(Team $team)
     {
-        $this->servingTeam = $team;
+        $this->validateExistingTeam($team);
+        $this->servingTeamKey = array_search($team, $this->teams);
     }
 
-    /**
-     * @return bool
-     */
     protected function isGameFinished()
     {
-        return ($this->teamOne->getScore() > 10 || $this->teamTwo->getScore() > 10) && abs($this->teamOne->getScore() - $this->teamTwo->getScore()) > 1;
+        return ($this->teams[0]->getScore() > 10 || $this->teams[1]->getScore() > 10) && abs($this->teams[0]->getScore() - $this->teams[1]->getScore()) > 1;
+    }
+
+    public function getServingTeam()
+    {
+        return $this->teams[$this->servingTeamKey];
+    }
+
+    public function validateExistingTeam(Team $team)
+    {
+        if (!in_array($team, $this->teams)) {
+            throw new InvalidTeamException('Team does not exist');
+        }
     }
 }

@@ -6,8 +6,8 @@ use PingPong\Player\Player;
 
 class SingleTeam implements Team
 {
-    /** @var Player */
-    protected $playerOne;
+    /** @var Player[] */
+    protected $players;
 
     /** @var Int */
     protected $score;
@@ -23,7 +23,7 @@ class SingleTeam implements Team
     public static function withPlayer(Player $playerOne)
     {
         $team = new SingleTeam();
-        $team->playerOne = $playerOne;
+        $team->players = [$playerOne];
         $team->score = 0;
 
         return $team;
@@ -36,7 +36,7 @@ class SingleTeam implements Team
 
     public function getServingPlayer()
     {
-        return $this->playerOne;
+        return $this->players[0];
     }
 
     public function setServingPlayer(Player $player)
@@ -46,7 +46,7 @@ class SingleTeam implements Team
 
     public function switchServingPlayer()
     {
-        return $this->playerOne;
+        return $this->players[0];
     }
 
     public function getScore()
@@ -57,5 +57,13 @@ class SingleTeam implements Team
     public function score()
     {
         $this->score++;
+    }
+
+    public function hasPlayer(Player $player)
+    {
+        if (!in_array($player, $this->players)) {
+            return false;
+        }
+        return true;
     }
 }

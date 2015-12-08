@@ -3,7 +3,7 @@
 namespace spec\PingPong\Game;
 
 use PhpSpec\ObjectBehavior;
-use PingPong\Game;
+use PingPong\Game\Game;
 use PingPong\Player\Player;
 use PingPong\Team\SingleTeam;
 use PingPong\Team\Team;
@@ -87,15 +87,28 @@ class GameSpec extends ObjectBehavior
         $this->isFinished()->shouldBe(true);
     }
 
-    function it_should_return_the_serving_player_with_new_game()
+    function it_should_return_the_serving_team_with_new_game()
     {
-        $this->getServingPlayer()->shouldBeAnInstanceOf('PingPong\Player\Player');
+        $this->getServingTeam()->shouldBeAnInstanceOf('PingPong\Team\Team');
+    }
+
+    function it_should_return_first_team_as_serving_team_as_default()
+    {
+        $this->getServingTeam()->shouldBe($this->teamOne);
     }
 
     function it_should_return_the_new_set_serving_team()
     {
-        $this->setServingTeam($this->teamOne);
-        $this->getServingPlayer()->shouldBe($this->playerTommy);
+        $this->setServingTeam($this->teamTwo);
+        $this->getServingTeam()->shouldBe($this->teamTwo);
+    }
+
+    function it_should_throw_exception_if_setting_non_existing_team()
+    {
+        $this->shouldThrow('PingPong\Team\InvalidTeamException')->during(
+            'setServingTeam',
+            [SingleTeam::withPlayer(Player::withName('Natalie'))]
+        );
     }
 
     function it_should_return_zero_score_for_starting_game()
@@ -114,4 +127,14 @@ class GameSpec extends ObjectBehavior
         $this->scoreMany(11, $this->teamOne);
         $this->shouldThrow('PingPong\Game\IllegalActionException')->during('score', [$this->teamOne]);
     }
+
+    /*function it_should_return_true_if_team_exists()
+    {
+        $this->hasTeam($this->teamOne)->shouldBe(true);
+    }
+
+    function it_should_return_false_if_team_does_not_exist()
+    {
+        $this->hasTeam(SingleTeam::withPlayer(Player::withName('Natalie')))->shouldBe(false);
+    }*/
 }

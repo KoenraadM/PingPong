@@ -17,4 +17,6 @@ interface Team
     public function score();
 
     public function getScore();
+
+    public function hasPlayer(Player $player);
 }

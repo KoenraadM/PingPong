@@ -14,7 +14,8 @@ use Prophecy\Argument;
  */
 class SingleTeamSpec extends ObjectBehavior
 {
-    private $playerOne;
+    private $player;
+    private $spectator;
 
     function it_is_initializable()
     {
@@ -23,8 +24,9 @@ class SingleTeamSpec extends ObjectBehavior
 
     function let()
     {
-        $this->playerOne = Player::withName('Tommy');
-        $this->beConstructedThrough('withPlayer', [$this->playerOne]);
+        $this->player = Player::withName('Tommy');
+        $this->spectator = Player::withName('Mathieu');
+        $this->beConstructedThrough('withPlayer', [$this->player]);
     }
 
     function it_should_count_one_for_a_one_player_team()
@@ -39,14 +41,14 @@ class SingleTeamSpec extends ObjectBehavior
 
     function it_should_set_the_serving_player()
     {
-        $this->setServingPlayer($this->playerOne);
-        $this->getServingPlayer()->shouldBe($this->playerOne);
+        $this->setServingPlayer($this->player);
+        $this->getServingPlayer()->shouldBe($this->player);
     }
 
     function it_should_switch_serving_players_for_single_player_game()
     {
-        $this->switchServingPlayer()->shouldBe($this->playerOne);
-        $this->getServingPlayer()->shouldBe($this->playerOne);
+        $this->switchServingPlayer()->shouldBe($this->player);
+        $this->getServingPlayer()->shouldBe($this->player);
     }
 
     function it_should_start_with_score_zero()
@@ -58,5 +60,15 @@ class SingleTeamSpec extends ObjectBehavior
     {
         $this->score();
         $this->getScore()->shouldBe(1);
+    }
+
+    function it_should_return_true_if_the_given_player_exists()
+    {
+        $this->hasPlayer($this->player)->shouldBe(true);
+    }
+
+    function it_should_return_false_if_the_given_player_doesnt_exists()
+    {
+        $this->hasPlayer($this->spectator)->shouldBe(false);
     }
 }
