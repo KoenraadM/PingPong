@@ -132,14 +132,4 @@ class GameSpec extends ObjectBehavior
         $this->scoreMany(11, $this->teamOne);
         $this->shouldThrow('PingPong\Game\IllegalActionException')->during('score', [$this->teamOne]);
     }
-
-    /*function it_should_return_true_if_team_exists()
-    {
-        $this->hasTeam($this->teamOne)->shouldBe(true);
-    }
-
-    function it_should_return_false_if_team_does_not_exist()
-    {
-        $this->hasTeam(SingleTeam::withPlayer(Player::withName('Natalie')))->shouldBe(false);
-    }*/
 }
