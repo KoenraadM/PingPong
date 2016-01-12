@@ -4,6 +4,7 @@ namespace PingPong\Player;
 
 class Player
 {
+    private $id;
     private $name;
 
     private function __construct()

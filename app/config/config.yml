@@ -59,7 +59,13 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
-
+        mappings:
+          # An array of mappings, which may be a bundle name or something else
+          default:
+              type:                 xml
+              dir:                  %kernel.root_dir%/../src/Infrastructure/Doctrine/MySQL/config
+              is_bundle:            false
+              prefix:               PingPong
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
