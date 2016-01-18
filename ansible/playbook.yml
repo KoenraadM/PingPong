@@ -9,6 +9,7 @@
     - nginx
     - mysql
     - rabbitmq
+    - mongodb
     - elasticsearch
     - php
     - xdebug

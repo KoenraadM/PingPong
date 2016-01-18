@@ -34,4 +34,6 @@ xdebug:
     install: '1'
 composer:
     install: '1'
+mongodb:
+    install: '1'
 
