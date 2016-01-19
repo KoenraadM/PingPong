@@ -1,0 +1,39 @@
+---
+server:
+    install: '1'
+    packages: [vim, git, nodejs, npm]
+    timezone: Europe/Brussels
+    locale: en_US.UTF-8
+vagrant_local:
+    install: '1'
+    vm: { base_box: trusty64, hostname: ping-pong, ip: 192.168.22.88, memory: '1024', sharedfolder: ./, useVagrantCloud: '1', syncType: nfs }
+nginx:
+    install: '1'
+    docroot: /vagrant/web
+    servername: 'ping pong'
+mysql:
+    install: '1'
+    root_password: root
+    database: pingpong
+    user: pingpong
+    password: pingpong
+    dump: ''
+rabbitmq:
+    install: '1'
+    user: rabbitmq
+    password: rabbitmq
+elasticsearch:
+    install: '1'
+    port: '9200'
+    version: 1.5.2
+php:
+    install: '1'
+    ppa: php5-5.6
+    packages: [php5-cli, php5-intl, php5-mcrypt, php5-curl, php5-mysql]
+xdebug:
+    install: '1'
+composer:
+    install: '1'
+mongodb:
+    install: '1'
+
