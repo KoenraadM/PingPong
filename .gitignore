@@ -10,3 +10,5 @@
 !var/sessions/.gitkeep
 /phpunit.xml
 /.idea/
+.vagrant/
+app/bootstrap.php.cache
