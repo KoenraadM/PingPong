@@ -18,7 +18,6 @@ class AppKernel extends Kernel
             new Dunglas\ApiBundle\DunglasApiBundle(),
             new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
             new PingPongBundle\PingPongBundle(),
-            new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
