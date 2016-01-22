@@ -1,10 +1,10 @@
 {
-    "name": "hansstevens/my_project",
+    "name": "Ping-Pong App",
     "license": "proprietary",
     "type": "project",
     "autoload": {
-        "psr-0": {
-            "": "src"
+        "psr-4": {
+            "": "src/"
         },
         "classmap": [
             "app/AppKernel.php",
