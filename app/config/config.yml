@@ -62,21 +62,6 @@ doctrine:
               is_bundle:            false
               prefix:               PingPong
 
-doctrine_mongodb:
-    connections:
-        default:
-            server: mongodb://localhost:27017
-            options: {}
-    default_database: pingpong
-    document_managers:
-        default:
-            auto_mapping: true
-            mappings:
-                name:
-                    type:   xml
-                    dir:    %kernel.root_dir%/../src/Infrastructure/Doctrine/MongoDb/config
-                    prefix: PingPong
-
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
