@@ -4,12 +4,11 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
         http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="PingPong\Player\Player" table="player">
-        <id name="id" type="integer">
-            <generator strategy="AUTO" />
-        </id>
-        <field name="name" type="string" length="100" />
-
-        <many-to-many field="teams" mapped-by="players" target-entity="PingPong\Team\Team"/>
+    <entity name="PingPong\Team\Team" inheritance-type="JOINED">
+        <discriminator-column name="type" type="string" />
+        <discriminator-map>
+            <discriminator-mapping value="SINGLE" class="PingPong\Team\SingleTeam" />
+            <discriminator-mapping value="DOUBLE" class="PingPong\Team\DoubleTeam" />
+        </discriminator-map>
     </entity>
 </doctrine-mapping>

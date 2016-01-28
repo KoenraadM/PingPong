@@ -27,10 +27,8 @@ class NewGameSpec extends ObjectBehavior
 
     function let()
     {
-        $this->playerTommy = new Player();
-        $this->playerTommy->setName('Tommy');
-        $this->playerDanny = new Player();
-        $this->playerDanny->setName('Danny');
+        $this->playerTommy = new Player('Tommy');
+        $this->playerDanny = new Player('Danny');
         $this->teamOne = new SingleTeam($this->playerTommy);
         $this->teamTwo = new SingleTeam($this->playerDanny);
         $this->beConstructedThrough('withTeams', array($this->teamOne, $this->teamTwo));
@@ -59,8 +57,7 @@ class NewGameSpec extends ObjectBehavior
 
     function it_should_throw_exception_if_setting_non_existing_team()
     {
-        $player = new player();
-        $player->setName('Natalie');
+        $player = new player('Natalie');
         $this->shouldThrow('PingPong\Team\InvalidTeamException')->during(
             'setServingTeam',
             [new SingleTeam($player)]

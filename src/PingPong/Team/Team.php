@@ -4,19 +4,45 @@ namespace PingPong\Team;
 
 use PingPong\Player\Player;
 
-interface Team
+abstract class Team
 {
-    public function getPlayerCount();
+    /** @var Player[] */
+    protected $players;
 
-    public function getServingPlayer();
+    /** @var Int */
+    protected $score;
 
-    public function setServingPlayer(Player $player);
+    protected $type;
 
-    public function switchServingPlayer();
+    public function getType()
+    {
+        return $this->type;
+    }
 
-    public function score();
+    abstract public function getPlayerCount();
 
-    public function getScore();
+    abstract public function getServingPlayer();
 
-    public function hasPlayer(Player $player);
+    abstract public function setServingPlayer(Player $player);
+
+    abstract public function switchServingPlayer();
+
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    public function score()
+    {
+        $this->score++;
+    }
+
+    public function hasPlayer(Player $player)
+    {
+        if (!in_array($player, $this->players)) {
+            return false;
+        }
+
+        return true;
+    }
 }

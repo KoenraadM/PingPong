@@ -2,6 +2,7 @@
 
 namespace PingPong\Player;
 
+use PingPong\Team\Team;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Player
@@ -9,9 +10,12 @@ class Player
     private $id;
     private $name;
     private $email;
+    /** @var Team[] */
+    private $teams;
 
-    public function __construct()
+    public function __construct($name)
     {
+        $this->name = $name;
     }
 
     public function getId()
@@ -54,5 +58,18 @@ class Player
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    /**
+     * @return \PingPong\Team\Team[]
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+
+    public function setTeams($teams)
+    {
+        $this->teams = $teams;
     }
 }

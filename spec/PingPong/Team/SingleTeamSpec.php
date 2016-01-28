@@ -19,10 +19,8 @@ class SingleTeamSpec extends ObjectBehavior
 
     function let()
     {
-        $this->player = new Player();
-        $this->player->setName('Tommy');
-        $this->spectator = new Player();
-        $this->spectator->setName('Mathieu');
+        $this->player = new Player('Tommy');
+        $this->spectator = new Player('Mathieu');
         $this->beConstructedWith($this->player);
     }
 

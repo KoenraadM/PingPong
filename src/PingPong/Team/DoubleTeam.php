@@ -7,25 +7,12 @@ use PingPong\Player\Player;
 
 class DoubleTeam extends SingleTeam
 {
-
     private $servingPlayerKey = 0;
 
-    private function __construct()
+    public function __construct(Player $playerOne, Player $playerTwo)
     {
-    }
-
-    /**
-     * @param Player $playerOne
-     * @param Player|null $playerTwo
-     * @return Team
-     */
-    public static function withPlayers(Player $playerOne, Player $playerTwo)
-    {
-        $team = new DoubleTeam();
-        $team->players = [$playerOne, $playerTwo];
-        $team->score = 0;
-
-        return $team;
+        $this->players = [$playerOne, $playerTwo];
+        $this->score = 0;
     }
 
     public function getPlayerCount()

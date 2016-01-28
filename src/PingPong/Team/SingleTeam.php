@@ -4,29 +4,12 @@ namespace PingPong\Team;
 
 use PingPong\Player\Player;
 
-class SingleTeam implements Team
+class SingleTeam extends Team
 {
-    /** @var Player[] */
-    protected $players;
-
-    /** @var Int */
-    protected $score;
-
-    private function __construct()
+    public function __construct(Player $playerOne)
     {
-    }
-
-    /**
-     * @param Player $playerOne
-     * @return SingleTeam
-     */
-    public static function withPlayer(Player $playerOne)
-    {
-        $team = new SingleTeam();
-        $team->players = [$playerOne];
-        $team->score = 0;
-
-        return $team;
+        $this->players = [$playerOne];
+        $this->score = 0;
     }
 
     public function getPlayerCount()
@@ -47,23 +30,5 @@ class SingleTeam implements Team
     public function switchServingPlayer()
     {
         return $this->players[0];
-    }
-
-    public function getScore()
-    {
-        return $this->score;
-    }
-
-    public function score()
-    {
-        $this->score++;
-    }
-
-    public function hasPlayer(Player $player)
-    {
-        if (!in_array($player, $this->players)) {
-            return false;
-        }
-        return true;
     }
 }

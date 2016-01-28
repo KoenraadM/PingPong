@@ -17,18 +17,16 @@ class DoubleTeamSpec extends ObjectBehavior
     private $playerOne;
     private $playerTwo;
 
+    function let()
+    {
+        $this->playerOne = new Player('Tommy');
+        $this->playerTwo = new Player('Danny');
+        $this->beConstructedWith($this->playerOne, $this->playerTwo);
+    }
+
     function it_is_initializable()
     {
         $this->shouldHaveType('PingPong\Team\Team');
-    }
-
-    function let()
-    {
-        $this->playerOne = new Player();
-        $this->playerOne->setName('Tommy');
-        $this->playerTwo = new Player();
-        $this->playerTwo->setName('Danny');
-        $this->beConstructedWith($this->playerOne, $this->playerTwo);
     }
 
     function it_should_count_two_for_player_count()
@@ -54,8 +52,7 @@ class DoubleTeamSpec extends ObjectBehavior
 
     function it_should_not_be_possible_to_set_an_unknown_player_as_serving_member()
     {
-        $player = new Player();
-        $player->setName('Thomas');
+        $player = new Player('Thomas');
         $this->shouldThrow('PingPong\Player\InvalidPlayerException')->during('setServingPlayer',
             array($player));
     }
