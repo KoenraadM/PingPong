@@ -18,19 +18,17 @@ class PlayerSpec extends ObjectBehavior
         $this->shouldHaveType('PingPong\Player\Player');
     }
 
-    function let()
-    {
-        $this->beConstructedThrough('withName', array('Tommy'));
-    }
-
     function it_should_return_player_name()
     {
+        $this->beConstructedWith();
+        $this->setName('Tommy');
         $this->getName()->shouldBeLike('Tommy');
     }
 
     function it_should_return_correct_player_name()
     {
-        $this->beConstructedThrough('withName', array('Danny'));
+        $this->beConstructedWith();
+        $this->setName('Danny');
         $this->getName()->shouldBeLike('Danny');
     }
 }

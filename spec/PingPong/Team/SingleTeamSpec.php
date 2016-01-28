@@ -4,29 +4,31 @@ namespace spec\PingPong\Team;
 
 use PhpSpec\ObjectBehavior;
 use PingPong\Player\Player;
-use PingPong\Team\Team;
+use PingPong\Team\SingleTeam;
 use Prophecy\Argument;
 
 /**
  * Class TeamSpec
  * @package spec\PingPong\Team
- * @mixin Team
+ * @mixin SingleTeam
  */
 class SingleTeamSpec extends ObjectBehavior
 {
     private $player;
     private $spectator;
 
+    function let()
+    {
+        $this->player = new Player();
+        $this->player->setName('Tommy');
+        $this->spectator = new Player();
+        $this->spectator->setName('Mathieu');
+        $this->beConstructedWith($this->player);
+    }
+
     function it_is_initializable()
     {
         $this->shouldHaveType('PingPong\Team\SingleTeam');
-    }
-
-    function let()
-    {
-        $this->player = Player::withName('Tommy');
-        $this->spectator = Player::withName('Mathieu');
-        $this->beConstructedThrough('withPlayer', [$this->player]);
     }
 
     function it_should_count_one_for_a_one_player_team()

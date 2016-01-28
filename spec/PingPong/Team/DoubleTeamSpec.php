@@ -4,13 +4,13 @@ namespace spec\PingPong\Team;
 
 use PhpSpec\ObjectBehavior;
 use PingPong\Player\Player;
-use PingPong\Team\Team;
+use PingPong\Team\DoubleTeam;
 use Prophecy\Argument;
 
 /**
  * Class TeamSpec
  * @package spec\PingPong\Team
- * @mixin Team
+ * @mixin DoubleTeam
  */
 class DoubleTeamSpec extends ObjectBehavior
 {
@@ -24,9 +24,11 @@ class DoubleTeamSpec extends ObjectBehavior
 
     function let()
     {
-        $this->playerOne = Player::withName('Tommy');
-        $this->playerTwo = Player::withName('Danny');
-        $this->beConstructedThrough('withPlayers', [$this->playerOne, $this->playerTwo]);
+        $this->playerOne = new Player();
+        $this->playerOne->setName('Tommy');
+        $this->playerTwo = new Player();
+        $this->playerTwo->setName('Danny');
+        $this->beConstructedWith($this->playerOne, $this->playerTwo);
     }
 
     function it_should_count_two_for_player_count()
@@ -52,8 +54,10 @@ class DoubleTeamSpec extends ObjectBehavior
 
     function it_should_not_be_possible_to_set_an_unknown_player_as_serving_member()
     {
+        $player = new Player();
+        $player->setName('Thomas');
         $this->shouldThrow('PingPong\Player\InvalidPlayerException')->during('setServingPlayer',
-            array(Player::withName('Thomas')));
+            array($player));
     }
 
     function it_should_switch_serving_players_for_two_player_game()
