@@ -6,6 +6,9 @@ use PingPong\Player\Player;
 
 abstract class Team
 {
+    /** @var int */
+    protected $id;
+
     /** @var Player[] */
     protected $players;
 

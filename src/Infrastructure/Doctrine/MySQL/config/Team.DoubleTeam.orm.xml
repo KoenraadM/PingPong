@@ -4,22 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
         http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="PingPong\Team\DoubleTeam" table="player">
-        <id name="id" type="integer">
-            <generator strategy="AUTO" />
-        </id>
-        <field name="score" type="integer" length="10" />
-        <field name="type" type="string" length="10" />
+    <entity name="PingPong\Team\DoubleTeam">
 
-        <many-to-many field="players" inversed-by="teams" target-entity="PingPong\Player\Player">
-            <join-table name="team_x_player">
-                <join-columns>
-                    <join-column name="player_id" referenced-column-name="id" />
-                </join-columns>
-                <inverse-join-columns>
-                    <join-column name="team_id" referenced-column-name="id" />
-                </inverse-join-columns>
-            </join-table>
-        </many-to-many>
     </entity>
 </doctrine-mapping>
