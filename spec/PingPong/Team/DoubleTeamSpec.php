@@ -21,7 +21,7 @@ class DoubleTeamSpec extends ObjectBehavior
     {
         $this->playerOne = new Player('Tommy');
         $this->playerTwo = new Player('Danny');
-        $this->beConstructedWith($this->playerOne, $this->playerTwo);
+        $this->beConstructedThrough('withPlayers', [$this->playerOne, $this->playerTwo]);
     }
 
     function it_is_initializable()

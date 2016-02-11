@@ -30,8 +30,8 @@ class FinishedGameSpec extends ObjectBehavior
     {
         $this->playerTommy = new Player('Tommy');
         $this->playerDanny = new Player('Danny');
-        $this->teamOne = new SingleTeam($this->playerTommy);
-        $this->teamTwo = new SingleTeam($this->playerDanny);
+        $this->teamOne = SingleTeam::withPlayer($this->playerTommy);
+        $this->teamTwo = SingleTeam::withPlayer($this->playerDanny);
         $this->beConstructedThrough('withTeams', array($this->teamOne, $this->teamTwo));
     }
 

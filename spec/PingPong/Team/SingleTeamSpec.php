@@ -21,7 +21,7 @@ class SingleTeamSpec extends ObjectBehavior
     {
         $this->player = new Player('Tommy');
         $this->spectator = new Player('Mathieu');
-        $this->beConstructedWith($this->player);
+        $this->beConstructedThrough('withPlayer', [$this->player]);
     }
 
     function it_is_initializable()

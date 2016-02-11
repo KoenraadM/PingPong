@@ -9,10 +9,12 @@ class DoubleTeam extends SingleTeam
 {
     private $servingPlayerKey = 0;
 
-    public function __construct(Player $playerOne, Player $playerTwo)
+    public static function withPlayers(Player $playerOne, Player $playerTwo)
     {
-        $this->players = [$playerOne, $playerTwo];
-        $this->score = 0;
+        $team = new static;
+        $team->players = [$playerOne, $playerTwo];
+        $team->score = 0;
+        return $team;
     }
 
     public function getPlayerCount()

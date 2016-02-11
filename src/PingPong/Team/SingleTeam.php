@@ -6,10 +6,13 @@ use PingPong\Player\Player;
 
 class SingleTeam extends Team
 {
-    public function __construct(Player $playerOne)
+    public static function withPlayer(Player $playerOne)
     {
-        $this->players = [$playerOne];
-        $this->score = 0;
+        $team = new static;
+        $team->players = [$playerOne];
+        $team->score = 0;
+
+        return $team;
     }
 
     public function getPlayerCount()
