@@ -1,7 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: services.yml }
+    - { resource: services.xml }
     - { resource: "@PingPongBundle/Resources/config/services.xml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
@@ -42,25 +42,28 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   pdo_mysql
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
-        password: "%database_password%"
-        charset:  UTF8
+        connections:
+            ping_pong:
+                driver:   pdo_mysql
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                charset:  UTF8
 
     orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
-        mappings:
-          # An array of mappings, which may be a bundle name or something else
-          default:
-              type:                 xml
-              dir:                  %kernel.root_dir%/../src/Infrastructure/Doctrine/MySQL/config
-              is_bundle:            false
-              prefix:               PingPong
+        entity_managers:
+            ping_pong:
+                connection: ping_pong
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                auto_mapping: true
+                mappings:
+                    ping_pong:
+                        type:                 xml
+                        dir:                  %kernel.root_dir%/../src/PingPongBundle/Infrastructure/Doctrine/MySQL/config
+                        prefix:               PingPong
+                        is_bundle:            false
 
 # Swiftmailer Configuration
 swiftmailer:
