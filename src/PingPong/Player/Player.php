@@ -13,9 +13,16 @@ class Player
     /** @var Team[] */
     private $teams;
 
-    public function __construct($name)
+    static public function withName($name)
     {
-        $this->name = $name;
+        $player = new self;
+        $player->name = $name;
+
+        return $player;
+    }
+
+    private function __construct()
+    {
     }
 
     public function getId()

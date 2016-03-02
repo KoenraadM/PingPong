@@ -28,8 +28,8 @@ class FinishedGameSpec extends ObjectBehavior
 
     function let()
     {
-        $this->playerTommy = new Player('Tommy');
-        $this->playerDanny = new Player('Danny');
+        $this->playerTommy = Player::withName('Tommy');
+        $this->playerDanny = Player::withName('Danny');
         $this->teamOne = SingleTeam::withPlayer($this->playerTommy);
         $this->teamTwo = SingleTeam::withPlayer($this->playerDanny);
         $this->beConstructedThrough('withTeams', array($this->teamOne, $this->teamTwo));

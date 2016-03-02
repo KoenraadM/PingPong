@@ -28,8 +28,8 @@ class OpenGameSpec extends ObjectBehavior
 
     function let()
     {
-        $this->playerTommy = new Player('Tommy');
-        $this->playerDanny = new Player('Danny');
+        $this->playerTommy = Player::withName('Tommy');
+        $this->playerDanny = Player::withName('Danny');
         $this->teamOne = SingleTeam::withPlayer($this->playerTommy);
         $this->teamTwo = SingleTeam::withPlayer($this->playerDanny);
         $this->beConstructedThrough('withTeams', array($this->teamOne, $this->teamTwo));
@@ -87,7 +87,7 @@ class OpenGameSpec extends ObjectBehavior
 
     function it_should_throw_exception_when_trying_to_score_for_non_existing_team()
     {
-        $player = new player('Natalie');
+        $player = Player::withName('Natalie');
         $this->shouldThrow('PingPong\Team\InvalidTeamException')->during('score',
             [SingleTeam::withPlayer($player)]);
     }

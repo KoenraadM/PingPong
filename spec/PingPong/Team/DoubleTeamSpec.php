@@ -19,8 +19,8 @@ class DoubleTeamSpec extends ObjectBehavior
 
     function let()
     {
-        $this->playerOne = new Player('Tommy');
-        $this->playerTwo = new Player('Danny');
+        $this->playerOne = Player::withName('Tommy');
+        $this->playerTwo = Player::withName('Danny');
         $this->beConstructedThrough('withPlayers', [$this->playerOne, $this->playerTwo]);
     }
 
@@ -52,7 +52,7 @@ class DoubleTeamSpec extends ObjectBehavior
 
     function it_should_not_be_possible_to_set_an_unknown_player_as_serving_member()
     {
-        $player = new Player('Thomas');
+        $player = Player::withName('Thomas');
         $this->shouldThrow('PingPong\Player\InvalidPlayerException')->during('setServingPlayer',
             array($player));
     }

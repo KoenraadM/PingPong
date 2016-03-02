@@ -15,19 +15,19 @@ class PlayerSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->beConstructedWith('Tommy');
+        $this->beConstructedThrough('withName', ['Tommy']);
         $this->shouldHaveType('PingPong\Player\Player');
     }
 
     function it_should_return_player_name()
     {
-        $this->beConstructedWith('Tommy');
+        $this->beConstructedThrough('withName', ['Tommy']);
         $this->getName()->shouldBeLike('Tommy');
     }
 
     function it_should_return_correct_player_name()
     {
-        $this->beConstructedWith('Danny');
+        $this->beConstructedThrough('withName', ['Danny']);
         $this->getName()->shouldBeLike('Danny');
     }
 }
