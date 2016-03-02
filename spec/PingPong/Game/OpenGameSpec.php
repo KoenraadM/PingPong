@@ -89,7 +89,7 @@ class OpenGameSpec extends ObjectBehavior
     {
         $player = new player('Natalie');
         $this->shouldThrow('PingPong\Team\InvalidTeamException')->during('score',
-            [new SingleTeam($player)]);
+            [SingleTeam::withPlayer($player)]);
     }
 
     function it_should_still_have_an_open_state_when_there_is_overtime()

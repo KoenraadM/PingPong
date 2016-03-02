@@ -60,7 +60,7 @@ class NewGameSpec extends ObjectBehavior
         $player = new player('Natalie');
         $this->shouldThrow('PingPong\Team\InvalidTeamException')->during(
             'setServingTeam',
-            [new SingleTeam($player)]
+            [SingleTeam::withPlayer($player)]
         );
     }
 

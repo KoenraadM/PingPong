@@ -17,6 +17,10 @@ abstract class Team
 
     protected $type;
 
+    protected function __construct()
+    {
+    }
+
     public function getType()
     {
         return $this->type;
