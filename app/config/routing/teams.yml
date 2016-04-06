@@ -1,0 +1,3 @@
+team_list:
+    path:      /
+    defaults:  { _controller: ping_pong.controller.team.list:__invoke }

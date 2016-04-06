@@ -34,6 +34,11 @@ abstract class Team
 
     abstract public function switchServingPlayer();
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function getScore()
     {
         return $this->score;

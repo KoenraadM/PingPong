@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
         http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="PingPong\Team\Team" inheritance-type="JOINED" table="team">
+    <entity name="PingPong\Team\Team" inheritance-type="JOINED" table="team" repository-class="PingPongBundle\Infrastructure\DoctrineTeamRepository">
         <discriminator-column name="type" type="string" />
         <discriminator-map>
             <discriminator-mapping value="SINGLE" class="PingPong\Team\SingleTeam" />

@@ -5,9 +5,13 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="ping_pong.controller.list"
+        <service id="ping_pong.controller.player.list"
                  class="PingPongBundle\Controller\ListPlayerController">
             <argument type="service" id="ping_pong.repository.player"/>
+        </service>
+        <service id="ping_pong.controller.team.list"
+                 class="PingPongBundle\Controller\ListTeamController">
+            <argument type="service" id="ping_pong.repository.team"/>
         </service>
     </services>
 </container>

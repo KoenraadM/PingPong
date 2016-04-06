@@ -2,3 +2,6 @@
 players:
     resource: routing/players.yml
     prefix: /players
+teams:
+    resource: routing/teams.yml
+    prefix: /teams

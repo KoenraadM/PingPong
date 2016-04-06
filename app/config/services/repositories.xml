@@ -12,5 +12,13 @@
                 class="PingPongBundle\Infrastructure\DoctrinePlayerRepository">
             <argument>PingPong\Player\Player</argument>
         </service>
+
+        <service
+                id="ping_pong.repository.team"
+                factory-service="doctrine.orm.ping_pong_entity_manager"
+                factory-method="getRepository"
+                class="PingPongBundle\Infrastructure\DoctrineTeamRepository">
+            <argument>PingPong\Team\Team</argument>
+        </service>
     </services>
 </container>
