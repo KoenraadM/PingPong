@@ -1,3 +1,7 @@
 player_list:
     path:      /
-    defaults:  { _controller: ping_pong.controller.list:__invoke }
+    defaults:  { _controller: ping_pong.controller.player.list:__invoke }
+
+player_resource:
+    path:     /{uuid}
+    defaults:  { _controller: ping_pong.controller.player.resource:__invoke }

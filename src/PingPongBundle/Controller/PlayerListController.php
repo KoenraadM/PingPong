@@ -4,9 +4,8 @@ namespace PingPongBundle\Controller;
 
 use PingPongBundle\Player\PlayerRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
-class ListPlayerController
+class PlayerListController
 {
     private $playerRepository;
 
@@ -17,8 +16,9 @@ class ListPlayerController
 
     public function __invoke(Request $request)
     {
-        $players = $this->playerRepository->getAll();
-        //Todo cannot return arrays as response. Need to plug in transformers.
-        return new Response($players);
+        $players = $this->playerRepository->findAll();
+        return [
+            'tralal' => 'lalal',
+        ];
     }
 }

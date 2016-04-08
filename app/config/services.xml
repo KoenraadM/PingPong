@@ -8,4 +8,13 @@
         <import resource="services/controllers.xml"/>
         <import resource="services/repositories.xml"/>
     </imports>
+
+    <services>
+        <service id="app.dto_view_transformer" class="PingPongBundle\Infrastructure\DTOViewTransformer">
+            <tag name="kernel.event_listener" event="kernel.view" method="onKernelView" />
+        </service>
+        <service id="app.exception_catcher" class="PingPongBundle\Infrastructure\ExceptionTransformer">
+            <tag name="kernel.event_listener" event="kernel.exception" method="onKernelView" />
+        </service>
+    </services>
 </container>
